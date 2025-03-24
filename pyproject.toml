@@ -1,0 +1,9 @@
+[project]
+name = "esp-mcp"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.11.0"
+dependencies = [
+    "mcp[cli]>=1.5.0",
+]
