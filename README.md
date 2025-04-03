@@ -1,5 +1,9 @@
 Currently, this MCP supports simple project builds with logging, and automatic issue fixing based on logs for esp-idf build command.
 
+### Notice
+This is just a proof of concept of MCP. As I see it, much can be done to make it more useful with embedded devices, home assistants, or documentation. If you have any ideas, we can discuss them in the issues.
+
+
 ### Install  
 
 First, clone this MCP repository:  
