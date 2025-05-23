@@ -1,4 +1,14 @@
-Currently, this MCP supports simple project builds with logging, and automatic issue fixing based on logs for esp-idf build command.
+### Goal
+The goal of this MCP is to:
+- Consolidate ESP-IDF and related project commands in one place.
+- Simplify getting started using only LLM communication.
+
+### How to contribute to the project
+
+Simply find a command that is missing from this MCP and create a PR for it!
+
+If you want someone to help you with this implementation, just open an issue.
+
 
 ### Notice
 This is just a proof of concept of MCP. As I see it, much can be done to make it more useful with embedded devices, home assistants, or documentation. If you have any ideas, we can discuss them in the issues.
