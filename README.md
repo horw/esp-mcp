@@ -15,6 +15,7 @@ This project is currently a **Proof of Concept (PoC)** for an MCP server tailore
 
 **Current Capabilities:**
 *   Supports basic ESP-IDF project build commands.
+*   Flash built firmware to connected ESP devices with optional port specification.
 *   Includes experimental support for automatic issue fixing based on build logs.
 
 **Vision & Future Work:**
