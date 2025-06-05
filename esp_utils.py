@@ -32,9 +32,8 @@ def get_esp_idf_dir() -> str:
     Returns:
         str: Path to the ESP-IDF directory
     """
-
     idf_dir = os.environ["IDF_PATH"]
-    return os.path.join(idf_dir, "esp-idf")
+    return idf_dir
 
 def get_export_script() -> str:
     """Get the path to the ESP-IDF export script
