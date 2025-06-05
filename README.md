@@ -81,3 +81,14 @@ The MCP server will then execute the corresponding ESP-IDF commands (like `idf.p
 The `result.gif` below shows an example interaction:
 
 ![Result](./result.gif)
+
+
+### Examples 
+
+
+1. Build and Flash
+<img src="./examples/build-flash.png">
+
+
+
+
