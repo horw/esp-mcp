@@ -25,6 +25,27 @@ async def build_esp_related_project(project_path: str) -> (str, str):
     logging.warning(f"build result {stdout} {stderr}")
     return stdout, stderr
 
+
+@mcp.tool()
+async def setup_project_esp_target(project_path: str, target: str) -> (str, str):
+    """
+    Sets up the target for an ESP-IDF project before building.
+
+    Args:
+        project_path (str): Path to the ESP-IDF project.
+        target (str): Lowercase target name, such as 'esp32' or 'esp32c3'.
+
+    Returns:
+        Tuple[str, str]: A tuple containing the standard output and standard error.
+    """
+    os.chdir(project_path)
+    export_script = get_export_script()
+    returncode, stdout, stderr = await run_command_async(f"bash -c 'source {export_script} && idf.py set-target {target}'")
+    open('mcp-set-target.log', 'w+').write(str((stdout, stderr)))
+    logging.warning(f"build result {stdout} {stderr}")
+    return stdout, stderr
+
+
 @mcp.tool()
 async def flash_esp_project(project_path: str, port: str = None) -> (str, str):
     """Flash built firmware to a connected ESP device.
