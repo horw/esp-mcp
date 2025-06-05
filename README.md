@@ -15,6 +15,7 @@ This project is currently a **Proof of Concept (PoC)** for an MCP server tailore
 
 **Current Capabilities:**
 *   Supports basic ESP-IDF project build commands.
+*   Flash built firmware to connected ESP devices with optional port specification.
 *   Includes experimental support for automatic issue fixing based on build logs.
 
 **Vision & Future Work:**
@@ -80,3 +81,14 @@ The MCP server will then execute the corresponding ESP-IDF commands (like `idf.p
 The `result.gif` below shows an example interaction:
 
 ![Result](./result.gif)
+
+
+### Examples 
+
+
+1. Build and Flash
+<img src="./examples/build-flash.png">
+
+
+
+

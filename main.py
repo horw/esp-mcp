@@ -2,7 +2,7 @@ import logging
 
 from mcp.server.fastmcp import FastMCP
 import os
-from esp_utils import run_command_async, get_export_script
+from esp_utils import run_command_async, get_export_script, list_serial_ports
 
 mcp = FastMCP("esp-mcp")
 
@@ -23,6 +23,51 @@ async def build_esp_related_project(project_path: str) -> (str, str):
     returncode, stdout, stderr = await run_command_async(f"bash -c 'source {export_script} && idf.py build'")
     open('mcp-process.log', 'w+').write(str((stdout, stderr)))
     logging.warning(f"build result {stdout} {stderr}")
+    return stdout, stderr
+
+@mcp.tool()
+async def flash_esp_project(project_path: str, port: str = None) -> (str, str):
+    """Flash built firmware to a connected ESP device.
+
+    Args:
+        project_path: Path to the ESP-IDF project
+        port: Serial port for the ESP device (optional, auto-detect if not provided)
+
+    Returns:
+        tuple: (stdout, stderr) - Flash logs and any error messages
+    """
+    os.chdir(project_path)
+    export_script = get_export_script()
+    
+    # Build the flash command
+    if port:
+        flash_cmd = f"bash -c 'source {export_script} && idf.py -p {port} flash'"
+    else:
+        flash_cmd = f"bash -c 'source {export_script} && idf.py flash'"
+    
+    returncode, stdout, stderr = await run_command_async(flash_cmd)
+    
+    # Log the flash operation
+    flash_log = f"Flash operation - Return code: {returncode}\nSTDOUT:\n{stdout}\nSTDERR:\n{stderr}"
+    open('mcp-flash.log', 'w+').write(flash_log)
+    logging.warning(f"flash result - return code: {returncode}, stdout: {stdout}, stderr: {stderr}")
+    
+    return stdout, stderr
+
+@mcp.tool()
+async def list_esp_serial_ports() -> (str, str):
+    """List available serial ports for ESP devices.
+
+    Returns:
+        tuple: (stdout, stderr) - Available serial ports and any error messages
+    """
+    returncode, stdout, stderr = await list_serial_ports()
+    
+    # Log the port listing operation
+    port_log = f"Port listing - Return code: {returncode}\nSTDOUT:\n{stdout}\nSTDERR:\n{stderr}"
+    open('mcp-ports.log', 'w+').write(port_log)
+    logging.warning(f"port listing result - return code: {returncode}, stdout: {stdout}, stderr: {stderr}")
+    
     return stdout, stderr
 
 if __name__ == '__main__':
