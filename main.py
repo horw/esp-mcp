@@ -25,6 +25,49 @@ async def build_esp_related_project(project_path: str) -> (str, str):
     logging.warning(f"build result {stdout} {stderr}")
     return stdout, stderr
 
+
+@mcp.tool()
+async def setup_project_esp_target(project_path: str, target: str) -> (str, str):
+    """
+    Sets up the target for an ESP-IDF project before building.
+
+    Args:
+        project_path (str): Path to the ESP-IDF project.
+        target (str): Lowercase target name, such as 'esp32' or 'esp32c3'.
+
+    Returns:
+        Tuple[str, str]: A tuple containing the standard output and standard error.
+    """
+    os.chdir(project_path)
+    export_script = get_export_script()
+    returncode, stdout, stderr = await run_command_async(f"bash -c 'source {export_script} && idf.py set-target {target}'")
+    open('mcp-set-target.log', 'w+').write(str((stdout, stderr)))
+    logging.warning(f"build result {stdout} {stderr}")
+    return stdout, stderr
+
+
+@mcp.tool()
+async def create_esp_project(project_path: str, project_name: str) -> (str, str):
+    """
+    Creates a new ESP-IDF project for an ESP chip.
+
+    Args:
+        project_path (str): Path where the new ESP-IDF project will be created. 
+                            Must be located directly under the current working directory.
+        project_name (str): Name of the ESP-IDF project to create.
+
+    Returns:
+        Tuple[str, str]: A tuple containing the standard output and standard error messages.
+    """
+    os.makedirs(project_path, exist_ok=True)
+    os.chdir(project_path)
+    export_script = get_export_script()
+    returncode, stdout, stderr = await run_command_async(f"bash -c 'source {export_script} && idf.py create-project --path {project_path} {project_name}'")
+    open('mcp-project-root-path.log', 'w+').write(str((stdout, stderr)))
+    logging.warning(f"build result {stdout} {stderr}")
+    return stdout, stderr
+
+
 @mcp.tool()
 async def flash_esp_project(project_path: str, port: str = None) -> (str, str):
     """Flash built firmware to a connected ESP device.
