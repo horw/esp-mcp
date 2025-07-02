@@ -91,6 +91,11 @@ The `result.gif` below shows an example interaction:
 1. Build and Flash
 <img src="./examples/build-flash.png">
 
+### Star History
+
+[![Star History Chart](https://api.star-history.com/svg?repos=horw/esp-mcp&type=Date)](https://star-history.com/#horw/esp-mcp&Date)
+
+
 
 
 
