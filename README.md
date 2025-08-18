@@ -1,5 +1,7 @@
 [![MseeP.ai Security Assessment Badge](https://mseep.net/pr/horw-esp-mcp-badge.png)](https://mseep.ai/app/horw-esp-mcp)
 
+[![Trust Score](https://archestra.ai/mcp-catalog/api/badge/quality/horw/esp-mcp)](https://archestra.ai/mcp-catalog/horw__esp-mcp)
+
 ### Goal
 The goal of this MCP is to:
 - Consolidate ESP-IDF and related project commands in one place.
