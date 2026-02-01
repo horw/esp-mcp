@@ -18,6 +18,11 @@ This project is currently a **Proof of Concept (PoC)** for an MCP server tailore
 **Current Capabilities:**
 *   Supports basic ESP-IDF project build commands.
 *   Flash built firmware to connected ESP devices with optional port specification.
+*   Clean build artifacts (clean or fullclean).
+*   Analyze firmware size and per-component breakdown.
+*   Erase device flash memory.
+*   Monitor serial output from connected devices.
+*   Get project and app information.
 *   Includes experimental support for automatic issue fixing based on build logs.
 
 **Vision & Future Work:**
@@ -77,8 +82,28 @@ Once the `esp-mcp` server is configured and running, your LLM or chatbot can int
 *   "Build the project located at `/path/to/my/esp-project` using the `esp-mcp`."
 *   "Clean the build files for the ESP32 project in the `examples/hello_world` directory."
 *   "Flash the firmware to my connected ESP32 device for the project in `my_app`."
+*   "Clean the build artifacts for the project at `/path/to/project`."
+*   "Show me the size breakdown of my ESP32 firmware."
+*   "Erase the flash on my connected ESP32."
+*   "Monitor the serial output from my ESP32 for 30 seconds."
 
 The MCP server will then execute the corresponding ESP-IDF commands (like `idf.py build`, `idf.py fullclean`, `idf.py flash`) based on the tools implemented in `main.py`.
+
+### Available Tools
+
+| Tool | Description | ESP-IDF Command |
+|------|-------------|-----------------|
+| `build_esp_related_project` | Build an ESP-IDF project | `idf.py build` |
+| `flash_esp_project` | Flash firmware to device | `idf.py flash` |
+| `clean_esp_project` | Clean build artifacts | `idf.py clean` / `fullclean` |
+| `get_esp_project_size` | Analyze firmware size | `idf.py size` |
+| `get_esp_component_size` | Per-component size breakdown | `idf.py size-components` |
+| `erase_esp_flash` | Erase device flash memory | `idf.py erase-flash` |
+| `monitor_esp_device` | Capture serial output | `idf.py monitor` |
+| `setup_project_esp_target` | Set target chip | `idf.py set-target` |
+| `create_esp_project` | Create new project | `idf.py create-project` |
+| `list_esp_serial_ports` | List available ports | `python -m serial.tools.list_ports` |
+| `get_esp_app_info` | Get app/project info | Reads `project_description.json` |
 
 The `result.gif` below shows an example interaction:
 
