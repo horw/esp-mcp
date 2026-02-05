@@ -1,7 +1,7 @@
 [project]
 name = "esp-mcp"
 version = "0.1.0"
-description = "Add your description here"
+description = "MCP server for ESP-IDF development - provides tools for building, flashing, monitoring, and debugging ESP32 projects"
 readme = "README.md"
 requires-python = ">=3.11.0"
 dependencies = [

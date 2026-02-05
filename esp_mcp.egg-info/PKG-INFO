@@ -1,3 +1,12 @@
+Metadata-Version: 2.4
+Name: esp-mcp
+Version: 0.1.0
+Summary: Add your description here
+Requires-Python: >=3.11.0
+Description-Content-Type: text/markdown
+Requires-Dist: mcp[cli]>=1.5.0
+Requires-Dist: pytest>=8.0.0
+
 [![MseeP.ai Security Assessment Badge](https://mseep.net/pr/horw-esp-mcp-badge.png)](https://mseep.ai/app/horw-esp-mcp)
 
 ### Goal
@@ -17,72 +26,21 @@ This project is currently a **Proof of Concept (PoC)** for an MCP server tailore
 
 **Current Capabilities:**
 
-**Core Features (30 tools available):**
-
-**Project Management:**
+**Core Features:**
+*   `run_esp_idf_install`: Install ESP-IDF dependencies and toolchain via `install.sh`.
 *   `create_esp_project`: Create a new ESP-IDF project.
 *   `setup_project_esp_target`: Set target chip for ESP-IDF projects (esp32, esp32c3, esp32s3, etc.).
-*   `get_project_info`: Get detailed information about an ESP-IDF project.
-*   `list_components`: List all components in an ESP-IDF project.
-
-**Build & Flash:**
 *   `build_esp_project`: Build ESP-IDF projects with incremental build support.
-*   `clean_esp_project`: Clean build files from an ESP-IDF project.
-*   `flash_esp_project`: Flash built firmware to connected ESP devices.
-*   `erase_flash_esp`: Erase flash memory on ESP device.
-*   `flash_and_monitor_esp`: Flash firmware and immediately monitor serial output.
-
-**Device Operations:**
 *   `list_esp_serial_ports`: List available serial ports for ESP devices.
-*   `monitor_esp`: Monitor serial output from ESP device.
-
-**Configuration:**
-*   `menuconfig_esp`: Run menuconfig to configure ESP-IDF project.
-*   `get_project_config`: Get project configuration information (sdkconfig).
-*   `set_esp_partition`: Set partition table for ESP-IDF project.
-*   `get_esp_idf_version`: Get ESP-IDF version information.
-*   `check_esp_idf_env`: Check ESP-IDF environment status and configuration.
-*   `run_esp_idf_install`: Run install.sh script in ESP-IDF directory.
-
-**Debugging:**
-*   `gdb_attach`: Attach GDB debugger to ESP device.
-*   `get_core_dump`: Get core dump information from ESP device.
-
-**Runtime Analysis:**
-*   `get_heap_info`: Get heap memory information from ESP device.
-*   `get_task_stats`: Get FreeRTOS task statistics from ESP device.
-
-**Testing:**
+*   `flash_esp_project`: Flash built firmware to connected ESP devices.
 *   `run_pytest`: Run pytest tests with pytest-embedded support for ESP-IDF projects.
-
-**File Operations:**
-*   `read_file`: Read contents of a file in the project.
-*   `write_file`: Write content to a file in the project.
-*   `list_files`: List files and directories in a project path.
-
-**Analysis Tools:**
-*   `parse_build_log`: Parse and analyze build log with structured output for AI analysis.
-*   `analyze_memory_map`: Analyze memory usage from .map file.
-*   `compare_sdkconfig`: Compare two sdkconfig files and output structured differences.
-*   `analyze_dependencies`: Analyze component dependencies from CMakeLists.txt files.
-*   `format_device_log`: Parse and format device serial logs with structured output.
 
 **Additional Features:**
 *   Flexible ESP-IDF path management: supports per-project ESP-IDF versions via `idf_path` parameter.
-*   Dynamic ESP-IDF path detection: automatically reads IDF_PATH from MCP configuration.
 *   SDK config management: supports custom `sdkconfig_defaults` files for build configuration (multiple files can be specified separated by semicolons).
 *   Build time tracking for performance monitoring.
 *   Optional port specification for flashing operations.
-*   Windows Git Bash path compatibility: automatic path conversion for cross-platform support.
-
-**Recent Bug Fixes & Improvements:**
-*   Fixed event loop nesting errors by implementing synchronous server communication
-*   Fixed JSON-RPC protocol errors with proper empty line handling
-*   Improved environment variable handling with better error messages
-*   Fixed subprocess encoding issues (UTF-8 with error replacement)
-*   Added Git Bash path conversion for Windows (E:/path → /e/path)
-*   Implemented dynamic ESP-IDF path detection from MCP configuration
-*   Added comprehensive error handling and logging
+*   Includes experimental support for automatic issue fixing based on build logs.
 
 **Vision & Future Work:**
 The long-term vision is to expand this MCP into a comprehensive toolkit for interacting with embedded devices, potentially integrating with home assistant platforms, and streamlining documentation access for ESP-IDF and related technologies.
