@@ -115,3 +115,8 @@ The `result.gif` below shows an example interaction:
 
 
 
+
+## Hosted deployment
+
+A hosted deployment is available on [Fronteir AI](https://fronteir.ai/mcp/horw-esp-mcp).
+
